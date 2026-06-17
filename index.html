@@ -650,6 +650,102 @@
       font-size: 15px;
     }
 
+
+    .detail-tabs-card {
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .detail-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--line);
+      background: #ececec;
+    }
+
+    .detail-tab {
+      appearance: none;
+      border: 0;
+      border-right: 1px solid #dddddd;
+      background: #ececec;
+      color: #9aa1ab;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      padding: 22px 14px;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease;
+    }
+
+    .detail-tab:last-child { border-right: 0; }
+
+    .detail-tab.is-active {
+      background: #fff;
+      color: #1f2e48;
+      box-shadow: inset 0 4px 0 #30384b;
+    }
+
+    .detail-tab-panels {
+      background: #fff;
+      min-height: 310px;
+    }
+
+    .detail-panel {
+      padding: 52px 58px 56px;
+      font-size: 15px;
+      line-height: 1.95;
+      color: #1e2430;
+    }
+
+    .detail-panel p {
+      margin: 0 0 12px;
+    }
+
+    .detail-bullets {
+      margin: 24px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .detail-bullets li {
+      margin: 2px 0;
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .detail-bullets li::before {
+      content: '-';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #1e2430;
+    }
+
+    .toc-chapters {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .toc-chapter h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      color: #1f2e48;
+    }
+
+    .toc-chapter ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .toc-chapter li {
+      margin: 2px 0;
+    }
+
+    .detail-review-panel {
+      color: #4d5665;
+    }
+
     .intro p { margin: 0 0 14px; }
 
     .info-grid {
@@ -824,6 +920,10 @@
       .gnb-logo { min-width: 210px; padding-left: 30px; }
       .gnb-logo img { width: 118px; max-height: 45px; transform: translateY(0); }
       .body-shell { grid-template-columns: 1fr; padding: 22px 18px 56px; }
+      .detail-tabs { grid-template-columns: 1fr; }
+      .detail-tab { font-size: 18px; padding: 18px 12px; border-right: 0; border-bottom: 1px solid #dddddd; }
+      .detail-tab:last-child { border-bottom: 0; }
+      .detail-panel { padding: 28px 20px 34px; }
       .right-page-menu { width: 100%; position: static; order: 2; }
       .page { order: 1; max-width: none; }
       .hero { grid-template-columns: 1fr; gap: 24px; }
@@ -913,42 +1013,95 @@
     </section>
 
     <div class="notice-banner">
-      <span><strong>어휘충전 마법사</strong> 바로가기</span>
+      <span><strong>어휘 출제 마법사</strong> 바로가기</span>
       <span>Go →</span>
     </div>
 
-    <section class="section-card intro" aria-labelledby="introTitle">
-      <h2 class="section-title" id="introTitle">책 소개</h2>
-      <div class="section-body">
-        <p><strong>Grammar Pop Starter 1</strong>은 초등학생이 영문법을 처음 접할 때 부담 없이 시작할 수 있도록 구성한 기초 문법 교재입니다.</p>
-        <p>핵심 문법 개념을 짧고 명확하게 제시하고, 단계별 문제를 통해 배운 내용을 자연스럽게 익힐 수 있도록 설계했습니다. 재미있는 예문과 반복 학습으로 문법의 기본기를 탄탄하게 다질 수 있습니다.</p>
-        <p>단원별 어휘와 문장 학습을 함께 구성하여 문법, 읽기, 쓰기 실력을 균형 있게 키울 수 있습니다.</p>
+    <section class="section-card detail-tabs-card" aria-label="교재 상세 정보">
+      <div class="detail-tabs" role="tablist" aria-label="교재 상세 메뉴">
+        <button class="detail-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="panel-book-info" id="tab-book-info" data-tab-target="panel-book-info">도서정보</button>
+        <button class="detail-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-toc" id="tab-toc" data-tab-target="panel-toc">목차</button>
+        <button class="detail-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-review" id="tab-review" data-tab-target="panel-review">교재후기</button>
+      </div>
 
-        <div class="info-grid">
-          <article class="panel" aria-labelledby="bookInfoTitle">
-            <h3 id="bookInfoTitle">도서정보</h3>
-            <ul class="book-info-list">
-              <li><span>교재명</span><span>Grammar Pop Starter 1</span></li>
-              <li><span>대상</span><span>초등 영어 학습자</span></li>
-              <li><span>분야</span><span>ELT · Grammar</span></li>
-              <li><span>구성</span><span>Student Book, 정답 및 해설, MP3 자료</span></li>
-              <li><span>특징</span><span>개념 설명, 단계별 연습문제, 단원별 복습</span></li>
-            </ul>
-          </article>
+      <div class="detail-tab-panels">
+        <section class="detail-panel is-active" role="tabpanel" id="panel-book-info" aria-labelledby="tab-book-info">
+          <p><strong>GRAMMAR POP Start</strong>는 초등학생을 대상으로 한 문법 시리즈로 총 두 권으로 구성되어 있습니다. 각 권의 문법 요목은 단계적으로 구성되어 두 권을 모두 학습하면 기초적인 초등 영문법을 완성할 수 있습니다.</p>
+          <p>핵심 문법 개념과 규칙은 초등학교 저학년 학생들의 눈높이에 맞춰 최대한 쉽고 간단하게 풀어서 설명하였으며, 기초 문제부터 응용 문제까지 단계별 문제들을 많이 수록하여 완벽한 복습을 할 수 있도록 구성하였습니다.</p>
+          <ul class="detail-bullets">
+            <li>단어장 및 단어장 MP3 제공</li>
+            <li>Word Quiz 및 실전모의고사 4회분 제공</li>
+          </ul>
+        </section>
 
-          <article class="panel" aria-labelledby="tocTitle">
-            <h3 id="tocTitle">목차</h3>
-            <ol class="toc-list">
-              <li>Be동사와 인칭대명사</li>
-              <li>일반동사의 현재형</li>
-              <li>명사의 단수와 복수</li>
-              <li>관사와 지시어</li>
-              <li>형용사와 부사 기초</li>
-              <li>의문문과 부정문 만들기</li>
-              <li>단원별 Review Test</li>
-            </ol>
-          </article>
-        </div>
+        <section class="detail-panel" role="tabpanel" id="panel-toc" aria-labelledby="tab-toc" hidden>
+          <div class="toc-chapters">
+            <div class="toc-chapter">
+              <h3>Chapter 1 명사와 관사</h3>
+              <ul>
+                <li>Unit 01 명사의 의미와 종류</li>
+                <li>Unit 02 셀 수 있는 명사의 복수형</li>
+                <li>Unit 03 관사 a / an / the</li>
+              </ul>
+            </div>
+            <div class="toc-chapter">
+              <h3>Chapter 2 대명사</h3>
+              <ul>
+                <li>Unit 04 인칭대명사의 주격과 목적격</li>
+                <li>Unit 05 인칭대명사의 소유격과 소유대명사</li>
+                <li>Unit 06 지시대명사와 비인칭 주어 it</li>
+              </ul>
+            </div>
+            <div class="toc-chapter">
+              <h3>Chapter 3 be 동사</h3>
+              <ul>
+                <li>Unit 07 be동사의 의미와 종류</li>
+                <li>Unit 08 be동사의 부정문과 의문문</li>
+              </ul>
+            </div>
+            <div class="toc-chapter">
+              <h3>Chapter 4 형용사</h3>
+              <ul>
+                <li>Unit 09 형용사의 의미와 종류</li>
+                <li>Unit 10 형용사의 쓰임</li>
+              </ul>
+            </div>
+            <div class="toc-chapter">
+              <h3>Chapter 5 일반동사</h3>
+              <ul>
+                <li>Unit 11 일반동사의 의미와 현재형</li>
+                <li>Unit 12 일반동사의 부정문과 의문문</li>
+              </ul>
+            </div>
+            <div class="toc-chapter">
+              <h3>Chapter 6 조동사</h3>
+              <ul>
+                <li>Unit 13 조동사 can</li>
+                <li>Unit 14 조동사 must</li>
+              </ul>
+            </div>
+            <div class="toc-chapter">
+              <h3>Chapter 7 부사</h3>
+              <ul>
+                <li>Unit 15 부사의 쓰임과 형태</li>
+                <li>Unit 16 There is / There are</li>
+              </ul>
+            </div>
+            <div class="toc-chapter appendix">
+              <h3>부록</h3>
+              <ul>
+                <li>단어장</li>
+                <li>실전모의고사 1~4회</li>
+                <li>영어 노트</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="detail-panel detail-review-panel" role="tabpanel" id="panel-review" aria-labelledby="tab-review" hidden>
+          <p><strong>교재후기</strong> 영역은 샘플 페이지용으로 구성된 탭입니다.</p>
+          <p>실서비스에서는 실제 후기 목록, 평점, 작성일, 작성자 정보 등을 이 영역에 연결하여 사용할 수 있습니다.</p>
+        </section>
       </div>
     </section>
 
@@ -1076,6 +1229,36 @@
         showToast('공유가 취소되었습니다.');
       }
     });
+
+
+    const detailTabs = document.querySelectorAll('.detail-tab');
+    const detailPanels = document.querySelectorAll('.detail-panel');
+
+    detailTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const targetId = tab.dataset.tabTarget;
+
+        detailTabs.forEach((item) => {
+          item.classList.remove('is-active');
+          item.setAttribute('aria-selected', 'false');
+        });
+
+        detailPanels.forEach((panel) => {
+          panel.classList.remove('is-active');
+          panel.hidden = true;
+        });
+
+        tab.classList.add('is-active');
+        tab.setAttribute('aria-selected', 'true');
+
+        const targetPanel = document.getElementById(targetId);
+        if (targetPanel) {
+          targetPanel.hidden = false;
+          targetPanel.classList.add('is-active');
+        }
+      });
+    });
+
   </script>
 </body>
 </html>
