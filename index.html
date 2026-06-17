@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grammar Pop Starter 1 교재 안내</title>
+  <style>
+    :root {
+      --navy: #252b38;
+      --blue: #2e63c8;
+      --red: #ef4338;
+      --line: #e5e7eb;
+      --text: #2a2f38;
+      --muted: #777f8e;
+      --bg: #f7f8fa;
+      --chip: #eef3ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", Arial, sans-serif;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .site-header {
+      width: 100%;
+      background: #252936;
+      color: #fff;
+      min-width: 1280px;
+    }
+
+    .gnb {
+      height: 112px;
+      display: grid;
+      grid-template-columns: 260px 187px 187px 187px 183px 188px 187px 188px 56px 56px 1fr;
+      align-items: stretch;
+      background: #252936;
+      border-top: 0;
+      overflow: visible;
+    }
+
+    .gnb-logo {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      min-width: 260px;
+      padding: 10px 34px 8px 44px;
+      background: #252936;
+      cursor: default;
+      overflow: visible;
+      line-height: 1;
+    }
+
+    .gnb-logo img {
+      display: block;
+      width: 162px;
+      height: 62px;
+      object-fit: contain;
+      flex: 0 0 auto;
+      transform: translateY(0);
+    }
+
+    .ybm-symbol {
+      width: 42px;
+      height: 22px;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 2px;
+    }
+
+    .ybm-symbol i {
+      display: block;
+      width: 5px;
+      height: 18px;
+      background: #fff;
+      transform: skewY(-22deg);
+    }
+
+    .ybm-symbol i:nth-child(1) { height: 16px; }
+    .ybm-symbol i:nth-child(2) { height: 19px; }
+    .ybm-symbol i:nth-child(3) { height: 21px; }
+    .ybm-symbol i:nth-child(4) { height: 19px; }
+    .ybm-symbol i:nth-child(5) { height: 17px; }
+
+    .ybm-text {
+      display: flex;
+      flex-direction: column;
+      font-size: 11px;
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    .ybm-text strong { font-size: 13px; font-weight: 900; }
+
+    .gnb-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-left: 1px solid rgba(255,255,255,.04);
+      color: rgba(255,255,255,.94);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      pointer-events: none;
+    }
+
+    .gnb-item.active { background: #2d58b7; }
+    .gnb-item.resource { background: #465065; }
+    .gnb-item.smart { background: #ef403b; }
+
+    .gnb-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-left: 1px solid rgba(255,255,255,.07);
+      color: rgba(255,255,255,.82);
+      font-size: 26px;
+      line-height: 1;
+      pointer-events: none;
+      background: #2b3140;
+    }
+
+    .gnb-icon.menu {
+      background: #2d58b7;
+      color: #fff;
+      font-size: 30px;
+      font-weight: 300;
+    }
+
+    .gnb-tail {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 20px;
+      padding-left: 24px;
+      color: rgba(255,255,255,.66);
+      font-size: 22px;
+      background: #252936;
+      border-left: 1px solid rgba(255,255,255,.06);
+    }
+
+    .gnb-tail span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      opacity: .78;
+    }
+
+    .sub-bar {
+      height: 48px;
+      border-bottom: 1px solid #cfd3da;
+      background: #fff;
+      min-width: 1280px;
+      box-shadow: inset 0 1px 0 rgba(0,0,0,.03);
+    }
+
+    .sub-inner {
+      height: 48px;
+      display: grid;
+      grid-template-columns: 52px 188px 189px 1fr;
+      align-items: center;
+      color: #313846;
+      font-size: 14px;
+    }
+
+    .crumb-home,
+    .crumb-select {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      border-right: 1px solid #e2e5ea;
+      background: #fff;
+    }
+
+    .crumb-home { justify-content: center; color: #7d8490; font-size: 17px; }
+    .crumb-select { justify-content: space-between; padding: 0 16px; font-weight: 600; }
+    .crumb-select::after { content: "⌄"; color: #2f3745; font-size: 19px; line-height: 1; }
+
+
+
+    /* 본문 + 우측 추천 영역 레이아웃 */
+    .body-shell {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 940px) 260px;
+      align-items: start;
+      gap: 34px;
+      padding: 28px 24px 70px;
+    }
+
+    .right-page-menu {
+      width: 260px;
+      position: sticky;
+      top: 16px;
+      align-self: start;
+      color: #202631;
+    }
+
+    .right-card {
+      border: 1px solid #e0e4eb;
+      background: #fff;
+      margin-bottom: 18px;
+    }
+
+    .curation-card {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 22px;
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+    }
+
+    .curation-card .go {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #777f8e;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .curation-card .go::after {
+      content: "";
+      width: 42px;
+      height: 12px;
+      border-bottom: 1px solid #9aa2af;
+      border-right: 1px solid #9aa2af;
+      transform: skewX(38deg) translateY(-4px);
+    }
+
+    .right-card-head {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid #edf0f4;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .right-card-arrows {
+      display: inline-flex;
+      gap: 4px;
+      color: #a4abb6;
+      font-size: 13px;
+    }
+
+    .book-mini-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      padding: 14px 14px 18px;
+    }
+
+    .book-mini {
+      min-width: 0;
+    }
+
+    .mini-cover {
+      height: 92px;
+      border-radius: 2px;
+      box-shadow: 0 4px 10px rgba(0,0,0,.15);
+      border: 1px solid rgba(0,0,0,.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7px;
+      font-size: 11px;
+      line-height: 1.15;
+      font-weight: 900;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .cover-blue { background: linear-gradient(150deg, #63c7ff 0%, #2762aa 100%); }
+    .cover-orange { background: linear-gradient(150deg, #ffbf57 0%, #e86f3d 100%); }
+    .cover-purple { background: linear-gradient(150deg, #d9bbff 0%, #7556b8 100%); }
+    .cover-green { background: linear-gradient(150deg, #9de875 0%, #189b79 100%); }
+    .cover-yellow { background: linear-gradient(150deg, #ffe95a 0%, #f28c38 100%); }
+    .cover-red { background: linear-gradient(150deg, #ff886d 0%, #c7323d 100%); }
+
+    .mini-title {
+      display: block;
+      margin-top: 8px;
+      color: #495163;
+      font-size: 11px;
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+      word-break: keep-all;
+    }
+
+    .site-inquiry-card {
+      padding: 18px 18px 16px;
+      background: #252936;
+      color: #fff;
+    }
+
+    .site-inquiry-card .label {
+      font-size: 15px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .site-inquiry-card .phone {
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 300;
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
+
+    .site-inquiry-card .hours {
+      color: rgba(255,255,255,.72);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .quick-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid #1f2532;
+      border-top: 0;
+    }
+
+    .quick-buttons a {
+      height: 82px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: #2e9be6;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .quick-buttons a + a { background: #252936; }
+    .quick-buttons .icon { font-size: 22px; line-height: 1; }
+
+    .page {
+      width: 100%;
+      max-width: 980px;
+      margin: 0;
+      padding: 0 0 70px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 980px;
+      margin: 0;
+      padding: 0 0 70px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 46px;
+      align-items: start;
+      padding-bottom: 34px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .book-cover-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .book-cover {
+      width: 236px;
+      height: 330px;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(255,255,255,.95) 0 20px, transparent 21px),
+        radial-gradient(circle at 28% 12%, rgba(255,255,255,.9) 0 14px, transparent 15px),
+        radial-gradient(circle at 76% 18%, rgba(255,255,255,.85) 0 22px, transparent 23px),
+        linear-gradient(145deg, #fff844 0%, #fbdd37 37%, #34bdff 38%, #264b8f 100%);
+      box-shadow: 0 16px 28px rgba(0,0,0,.2);
+    }
+
+    .book-cover::before {
+      content: "";
+      position: absolute;
+      inset: 58px 20px 44px;
+      border-radius: 50%;
+      background: #384b6c;
+      box-shadow: inset 0 0 0 8px rgba(255,255,255,.16);
+      transform: rotate(-6deg);
+    }
+
+    .book-cover .label {
+      position: absolute;
+      top: 34px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-6deg);
+      padding: 4px 14px;
+      border-radius: 16px;
+      background: #2f4263;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .book-cover .title-small {
+      position: absolute;
+      top: 76px;
+      left: 29px;
+      right: 29px;
+      color: #ff3f3f;
+      font-size: 26px;
+      line-height: 1;
+      font-weight: 900;
+      text-align: center;
+      text-shadow: 2px 2px 0 #111, -1px -1px 0 #111, 1px -1px 0 #111, -1px 1px 0 #111;
+      transform: rotate(-7deg);
+    }
+
+    .book-cover .pop {
+      position: absolute;
+      top: 113px;
+      left: 24px;
+      right: 24px;
+      color: #ffdf33;
+      font-size: 66px;
+      line-height: .86;
+      font-weight: 1000;
+      letter-spacing: -0.08em;
+      text-align: center;
+      text-shadow: 4px 4px 0 #152339, -2px -2px 0 #152339, 2px -2px 0 #152339, -2px 2px 0 #152339;
+      transform: rotate(-7deg);
+    }
+
+    .book-cover .level {
+      position: absolute;
+      right: 20px;
+      bottom: 16px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #ef4338;
+      color: #fff;
+      font-weight: 1000;
+      font-size: 38px;
+      border: 5px solid #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    }
+
+    .book-cover .starter {
+      position: absolute;
+      left: 28px;
+      bottom: 42px;
+      color: #46d7ff;
+      font-size: 28px;
+      font-weight: 900;
+      text-shadow: 2px 2px 0 #0d2341;
+    }
+
+    .share-btn {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #ccd2dd;
+      border-radius: 50%;
+      background: #fff;
+      color: #4b5563;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .share-btn:hover { background: #f2f6ff; border-color: #9db4ee; }
+
+    .hero-info { padding-top: 6px; }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      height: 24px;
+      padding: 0 10px;
+      border: 1px solid #9fb3d9;
+      color: #315286;
+      font-size: 12px;
+      font-weight: 700;
+      background: #fff;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 32px;
+      line-height: 1.25;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      margin: 0 0 10px;
+      color: #697386;
+      font-size: 15px;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 16px;
+      background: #9aa0a9;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .divider { height: 1px; background: var(--line); margin: 0 0 16px; }
+
+    .resource-row,
+    .price-row {
+      display: flex;
+      align-items: center;
+      min-height: 42px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .row-label {
+      width: 90px;
+      color: #8b93a0;
+    }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      height: 28px;
+      padding: 0 13px;
+      border-radius: 15px;
+      background: #0c7aa5;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .tax {
+      margin-left: 14px;
+      color: #9aa0aa;
+      border: 1px solid var(--line);
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .heart {
+      width: 44px;
+      height: 44px;
+      border: 1px solid #d2d7e0;
+      background: #fff;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .buy-btn {
+      width: 180px;
+      height: 44px;
+      border: 0;
+      color: #fff;
+      background: var(--red);
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .notice-banner {
+      margin: 26px 0 10px;
+      background: #e8e6ff;
+      border-left: 0 solid #766be7;
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 800;
+      color: #33364a;
+    }
+
+    .notice-banner strong { color: #ff5858; }
+
+    .section-card {
+      border: 1px solid var(--line);
+      background: #fff;
+      margin-top: 20px;
+    }
+
+    .section-title {
+      margin: 0;
+      padding: 20px 26px 17px;
+      border-bottom: 1px solid var(--line);
+      font-size: 22px;
+      text-align: center;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .section-body {
+      padding: 30px 36px 36px;
+      font-size: 15px;
+    }
+
+    .intro p { margin: 0 0 14px; }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 28px;
+    }
+
+    .panel {
+      border: 1px solid #dfe3ea;
+      background: #fbfcfe;
+    }
+
+    .panel h3 {
+      margin: 0;
+      padding: 14px 18px;
+      font-size: 18px;
+      border-bottom: 1px solid #dfe3ea;
+      background: #f3f5f8;
+      letter-spacing: -0.02em;
+    }
+
+    .book-info-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .book-info-list li {
+      display: flex;
+      border-bottom: 1px solid #edf0f4;
+      min-height: 42px;
+    }
+
+    .book-info-list li:last-child { border-bottom: 0; }
+
+    .book-info-list span:first-child {
+      flex: 0 0 96px;
+      padding: 10px 14px;
+      color: #667085;
+      font-weight: 800;
+      background: #f8fafc;
+    }
+
+    .book-info-list span:last-child {
+      padding: 10px 14px;
+      flex: 1;
+    }
+
+    .toc-list {
+      margin: 0;
+      padding: 16px 22px 18px 36px;
+    }
+
+    .toc-list li { margin: 7px 0; }
+
+    .video-section {
+      margin-top: 26px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .video-head {
+      padding: 22px 26px;
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .video-head h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .video-head p {
+      margin: 0;
+      color: var(--red);
+      font-weight: 900;
+    }
+
+    .video-wrap {
+      padding: 26px;
+      background: #fafbfc;
+    }
+
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      display: block;
+      background: #000;
+      border-radius: 6px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.12);
+    }
+
+    .floating-chat {
+      position: fixed;
+      right: 28px;
+      bottom: 28px;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: #ff784d;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 10px 24px rgba(255,120,77,.42);
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      background: #f7f7f8;
+      color: #8a909b;
+      font-size: 13px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 36px;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      background: rgba(37,43,56,.94);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 22px;
+      font-size: 14px;
+      transition: .25s;
+      z-index: 10;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+
+
+    @media (max-width: 1100px) {
+      .body-shell {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        padding: 24px 20px 60px;
+      }
+      .left-page-menu {
+        position: static;
+        width: 100%;
+      }
+      .left-menu-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .left-menu-list li:nth-child(2n-1) { border-right: 1px solid #edf0f4; }
+      .left-service-box {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .left-service-box a:nth-child(odd) { border-right: 1px solid #edf0f4; }
+      .page { max-width: none; }
+    }
+
+    @media (max-width: 820px) {
+      .site-header, .sub-bar { min-width: 0; }
+      .gnb { grid-template-columns: 210px repeat(2, 1fr); height: 92px; border-top-width: 0; overflow: visible; }
+      .gnb-item:nth-of-type(n+3), .gnb-icon, .gnb-tail { display: none; }
+      .gnb-logo { min-width: 210px; padding-left: 30px; }
+      .gnb-logo img { width: 118px; max-height: 45px; transform: translateY(0); }
+      .body-shell { grid-template-columns: 1fr; padding: 22px 18px 56px; }
+      .right-page-menu { width: 100%; position: static; order: 2; }
+      .page { order: 1; max-width: none; }
+      .hero { grid-template-columns: 1fr; gap: 24px; }
+      .hero-info { padding-top: 0; }
+      .book-cover { width: 210px; height: 294px; }
+      h1 { font-size: 28px; }
+      .info-grid { grid-template-columns: 1fr; }
+      .section-body { padding: 24px 20px 28px; }
+      .notice-banner { align-items: flex-start; gap: 10px; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" aria-label="상단 메뉴">
+    <div class="gnb">
+      <div class="gnb-logo" aria-label="와이비엠 북샘 로고">
+        <img src="data:image/png;base64,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" alt="와이비엠 북샘" />
+      </div>
+      <span class="gnb-item">초등</span>
+      <span class="gnb-item">중등</span>
+      <span class="gnb-item">고등</span>
+      <span class="gnb-item">교과서</span>
+      <span class="gnb-item active">ELT</span>
+      <span class="gnb-item resource">자료실</span>
+      <span class="gnb-item smart">스마트 센터</span>
+      <span class="gnb-icon" aria-hidden="true">⌕</span>
+      <span class="gnb-icon menu" aria-hidden="true">≡</span>
+      <span class="gnb-tail" aria-hidden="true"><span>↗</span><span>▣</span><span>♙</span><span>↶</span></span>
+    </div>
+  </header>
+
+  <nav class="sub-bar" aria-label="현재 위치">
+    <div class="sub-inner">
+      <span class="crumb-home" aria-hidden="true">⌂</span>
+      <span class="crumb-select">ELT</span>
+      <span class="crumb-select">Grammar</span>
+      <span></span>
+    </div>
+  </nav>
+
+  <div class="body-shell">
+    <main class="page">
+    <section class="hero" aria-labelledby="bookTitle">
+      <div class="book-cover-wrap">
+        <div class="book-cover" role="img" aria-label="Grammar Pop Starter 1 표지 이미지 영역">
+          <div class="label">초등 영문법</div>
+          <div class="title-small">GRAMMAR</div>
+          <div class="pop">POP</div>
+          <div class="starter">Starter</div>
+          <div class="level">1</div>
+        </div>
+        <button class="share-btn" type="button" id="shareBtn" aria-label="페이지 공유">↗</button>
+      </div>
+
+      <div class="hero-info">
+        <div class="tags">
+          <span class="tag">#초등</span>
+          <span class="tag">#문법</span>
+          <span class="tag">#Grammar POP</span>
+        </div>
+
+        <h1 id="bookTitle">Grammar Pop Starter 1</h1>
+        <p class="subtitle">초등 문법의 첫 시작을 쉽고 재미있게 완성하는 Grammar POP Starter 시리즈</p>
+        <div class="meta-pill">YBM솔루션 | 210 × 275 | 128쪽 | 샘플 안내 페이지</div>
+
+        <div class="divider"></div>
+
+        <div class="resource-row">
+          <div class="row-label">학습자료</div>
+          <div class="chips">
+            <span class="chip">단어장</span>
+            <span class="chip">MP3</span>
+            <span class="chip">정답 및 해설</span>
+          </div>
+        </div>
+
+        <div class="price-row">
+          <div class="row-label">가격</div>
+          <div><span class="price">₩ 11,500</span><span class="tax">소득공제</span></div>
+        </div>
+
+        <div class="actions">
+          <button class="heart" type="button" id="heartBtn" aria-label="관심 교재 등록">♡</button>
+          <button class="buy-btn" type="button" onclick="showToast('샘플 페이지입니다. 구매 버튼은 연결되어 있지 않습니다.')">온라인 서점 구매</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="notice-banner">
+      <span><strong>어휘충전 마법사</strong> 바로가기</span>
+      <span>Go →</span>
+    </div>
+
+    <section class="section-card intro" aria-labelledby="introTitle">
+      <h2 class="section-title" id="introTitle">책 소개</h2>
+      <div class="section-body">
+        <p><strong>Grammar Pop Starter 1</strong>은 초등학생이 영문법을 처음 접할 때 부담 없이 시작할 수 있도록 구성한 기초 문법 교재입니다.</p>
+        <p>핵심 문법 개념을 짧고 명확하게 제시하고, 단계별 문제를 통해 배운 내용을 자연스럽게 익힐 수 있도록 설계했습니다. 재미있는 예문과 반복 학습으로 문법의 기본기를 탄탄하게 다질 수 있습니다.</p>
+        <p>단원별 어휘와 문장 학습을 함께 구성하여 문법, 읽기, 쓰기 실력을 균형 있게 키울 수 있습니다.</p>
+
+        <div class="info-grid">
+          <article class="panel" aria-labelledby="bookInfoTitle">
+            <h3 id="bookInfoTitle">도서정보</h3>
+            <ul class="book-info-list">
+              <li><span>교재명</span><span>Grammar Pop Starter 1</span></li>
+              <li><span>대상</span><span>초등 영어 학습자</span></li>
+              <li><span>분야</span><span>ELT · Grammar</span></li>
+              <li><span>구성</span><span>Student Book, 정답 및 해설, MP3 자료</span></li>
+              <li><span>특징</span><span>개념 설명, 단계별 연습문제, 단원별 복습</span></li>
+            </ul>
+          </article>
+
+          <article class="panel" aria-labelledby="tocTitle">
+            <h3 id="tocTitle">목차</h3>
+            <ol class="toc-list">
+              <li>Be동사와 인칭대명사</li>
+              <li>일반동사의 현재형</li>
+              <li>명사의 단수와 복수</li>
+              <li>관사와 지시어</li>
+              <li>형용사와 부사 기초</li>
+              <li>의문문과 부정문 만들기</li>
+              <li>단원별 Review Test</li>
+            </ol>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="video-section" aria-labelledby="videoTitle">
+      <div class="video-head">
+        <h2 id="videoTitle">교재 소개 영상</h2>
+        <p>교재 관련 정식 소개 영상은 추후 공개 예정입니다.</p>
+      </div>
+      <div class="video-wrap">
+        <iframe
+          class="video-frame"
+          src="https://www.youtube.com/embed/LvNr9QfPY5Y"
+          title="Grammar POP 이전 개정 교재 소개 영상"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+    </main>
+
+    <aside class="right-page-menu" aria-label="우측 추천 메뉴">
+      <a class="right-card curation-card" href="#" onclick="return false;">
+        <span>교재 큐레이션</span>
+        <span class="go">Go</span>
+      </a>
+
+      <section class="right-card" aria-labelledby="relatedBooksTitle">
+        <div class="right-card-head" id="relatedBooksTitle">
+          <span>함께 보면 좋은 교재</span>
+          <span class="right-card-arrows">← →</span>
+        </div>
+        <div class="book-mini-list">
+          <a class="book-mini" href="#" onclick="return false;">
+            <span class="mini-cover cover-blue">Grammar<br>Workshop<br>Blue</span>
+            <span class="mini-title">Grammar Workshop SB Level Blue</span>
+          </a>
+          <a class="book-mini" href="#" onclick="return false;">
+            <span class="mini-cover cover-orange">Grammar<br>Workshop<br>Orange</span>
+            <span class="mini-title">Grammar Workshop SB Level Orange</span>
+          </a>
+          <a class="book-mini" href="#" onclick="return false;">
+            <span class="mini-cover cover-purple">Grammar<br>Wonder<br>3</span>
+            <span class="mini-title">Grammar Wonder 3</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="right-card" aria-labelledby="bestSellerTitle">
+        <div class="right-card-head" id="bestSellerTitle">
+          <span>Best Seller</span>
+          <span class="right-card-arrows">← →</span>
+        </div>
+        <div class="book-mini-list">
+          <a class="book-mini" href="#" onclick="return false;">
+            <span class="mini-cover cover-green">Benchmark<br>Reading<br>1.1</span>
+            <span class="mini-title">Benchmark Reading 1.1</span>
+          </a>
+          <a class="book-mini" href="#" onclick="return false;">
+            <span class="mini-cover cover-yellow">Benchmark<br>Reading<br>2.2</span>
+            <span class="mini-title">Benchmark Reading 2.2</span>
+          </a>
+          <a class="book-mini" href="#" onclick="return false;">
+            <span class="mini-cover cover-red">Benchmark<br>Reading<br>1.3</span>
+            <span class="mini-title">Benchmark Reading 1.3</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="site-inquiry-card" aria-label="사이트 문의">
+        <div class="label">사이트 문의</div>
+        <div class="phone">02-2000-0500</div>
+        <div class="hours">평일 09:00 - 18:00 | 점심시간 12:00 - 13:00</div>
+      </section>
+      <div class="quick-buttons">
+        <a href="#" onclick="return false;"><span class="icon">☏</span><span>사은품 몰</span></a>
+        <a href="#" onclick="return false;"><span class="icon">✦</span><span>이벤트</span></a>
+      </div>
+    </aside>
+  </div>
+
+  <div class="floating-chat" aria-hidden="true">💬</div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <footer>
+    Copyright © YBM Books. Sample guide page for GitHub Pages.
+  </footer>
+
+  <script>
+    const toast = document.getElementById('toast');
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      window.clearTimeout(window.__toastTimer);
+      window.__toastTimer = window.setTimeout(() => {
+        toast.classList.remove('show');
+      }, 1800);
+    }
+
+    document.getElementById('heartBtn').addEventListener('click', (event) => {
+      const button = event.currentTarget;
+      const active = button.dataset.active === 'true';
+      button.dataset.active = String(!active);
+      button.textContent = active ? '♡' : '♥';
+      showToast(active ? '관심 교재에서 해제되었습니다.' : '관심 교재로 표시되었습니다.');
+    });
+
+    document.getElementById('shareBtn').addEventListener('click', async () => {
+      const shareData = {
+        title: document.title,
+        text: 'Grammar Pop Starter 1 교재 안내 페이지',
+        url: window.location.href
+      };
+
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+        } else if (navigator.clipboard) {
+          await navigator.clipboard.writeText(window.location.href);
+          showToast('페이지 주소가 복사되었습니다.');
+        } else {
+          showToast('브라우저에서 공유 기능을 지원하지 않습니다.');
+        }
+      } catch (error) {
+        showToast('공유가 취소되었습니다.');
+      }
+    });
+  </script>
+</body>
+</html>
